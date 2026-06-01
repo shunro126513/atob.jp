@@ -1,0 +1,21 @@
+# 環境変数・秘密情報
+.env
+.env.local
+.env*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+.next/
+out/
+
+# IDE
+.vscode/
+.idea/
+
+# ログ
+*.log
+/tmp/
