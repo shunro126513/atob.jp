@@ -1,12 +1,19 @@
-import { Resend } from "resend";
 import type { Project } from "@/types";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM   = "A to B <noreply@atob.jp>";
-const SITE   = process.env.NEXT_PUBLIC_SITE_URL ?? "https://atob.jp";
+const FROM = "A to B <noreply@atob.jp>";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://atob.jp";
 
 export async function sendCreatorNotification(project: Project): Promise<boolean> {
   if (!project.creator_email) return false;
+
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.warn("RESEND_API_KEY not set — skipping email notification");
+    return false;
+  }
+
+  const { Resend } = await import("resend");
+  const resend = new Resend(apiKey);
 
   const projectUrl   = `${SITE}/projects/${project.id}`;
   const achievement  = Math.round(project.achievement_rate);
