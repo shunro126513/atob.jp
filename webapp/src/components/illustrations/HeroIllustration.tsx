@@ -24,10 +24,25 @@ export default function HeroIllustration() {
       <line x1="296" y1="228" x2="324" y2="228" stroke="#fff" strokeWidth="1.5" opacity="0.7" />
       <line x1="296" y1="236" x2="324" y2="236" stroke="#fff" strokeWidth="1.5" opacity="0.7" />
 
-      {/* 音符 */}
-      <text x="355" y="165" fontSize="22" fill="#e8503a" opacity="0.8">♪</text>
-      <text x="340" y="135" fontSize="16" fill="#e8503a" opacity="0.5">♫</text>
-      <text x="370" y="195" fontSize="14" fill="#e8503a" opacity="0.6">♩</text>
+      {/* 音符 (SVG paths) */}
+      {/* note 1 - large */}
+      <g transform="translate(355, 148)" fill="#e8503a" opacity="0.8">
+        <rect x="12" y="0" width="3" height="14" rx="1.5" />
+        <rect x="12" y="0" width="12" height="3" rx="1.5" />
+        <ellipse cx="6" cy="14" rx="6" ry="4" transform="rotate(-15 6 14)" />
+      </g>
+      {/* note 2 - medium */}
+      <g transform="translate(340, 120)" fill="#e8503a" opacity="0.5">
+        <rect x="9" y="0" width="2.5" height="11" rx="1.25" />
+        <rect x="9" y="0" width="9" height="2.5" rx="1.25" />
+        <ellipse cx="4.5" cy="11" rx="4.5" ry="3" transform="rotate(-15 4.5 11)" />
+      </g>
+      {/* note 3 - small */}
+      <g transform="translate(370, 184)" fill="#e8503a" opacity="0.6">
+        <rect x="8" y="0" width="2" height="10" rx="1" />
+        <rect x="8" y="0" width="8" height="2" rx="1" />
+        <ellipse cx="4" cy="10" rx="4" ry="2.5" transform="rotate(-15 4 10)" />
+      </g>
 
       {/* ステージ */}
       <ellipse cx="240" cy="295" rx="130" ry="18" fill="#e8503a" opacity="0.12" />

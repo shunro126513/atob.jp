@@ -1,14 +1,15 @@
 import { getTrendingProjects } from "@/lib/projects";
 import ProjectCard from "@/components/ProjectCard";
 import { FadeIn, FadeInStagger, FadeInItem } from "@/components/motion/FadeIn";
+import { Flame, TrendingUp, DollarSign, Megaphone, Target, Thermometer } from "lucide-react";
 
 export const revalidate = 1800;
 
 const HEAT_FACTORS = [
-  { label: "支援額の伸び", weight: "30%", icon: "📈" },
-  { label: "累計支援額",  weight: "30%", icon: "💰" },
-  { label: "SNS注目度",  weight: "20%", icon: "📣" },
-  { label: "達成率の伸び", weight: "20%", icon: "🎯" },
+  { label: "支援額の伸び", weight: "30%", icon: TrendingUp },
+  { label: "累計支援額",   weight: "30%", icon: DollarSign },
+  { label: "SNS注目度",   weight: "20%", icon: Megaphone },
+  { label: "達成率の伸び", weight: "20%", icon: Target },
 ];
 
 export default async function TrendingPage() {
@@ -28,7 +29,9 @@ export default async function TrendingPage() {
               <span className="text-ink/60">トレンド</span>
             </nav>
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-4xl">🔥</span>
+              <div className="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center">
+                <Flame className="w-6 h-6 text-brand-500" />
+              </div>
               <h1 className="font-display text-3xl md:text-4xl font-bold text-ink">今熱いプロジェクト</h1>
             </div>
             <p className="text-ink/50 text-sm max-w-lg">
@@ -43,7 +46,7 @@ export default async function TrendingPage() {
         <FadeIn>
           <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-100 rounded-2xl p-6 mb-10">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-lg">🌡️</span>
+              <Thermometer className="w-5 h-5 text-amber-600" />
               <p className="font-display font-bold text-amber-900">ヒートスコアとは？</p>
             </div>
             <p className="text-sm text-amber-800/70 mb-4 leading-relaxed">
@@ -51,11 +54,13 @@ export default async function TrendingPage() {
               0〜100のスケールで、80以上が高熱・50〜79が中熱・49以下が低熱と分類されます。
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {HEAT_FACTORS.map((item) => (
-                <div key={item.label} className="bg-white rounded-xl px-4 py-3 text-center border border-amber-100">
-                  <span className="text-xl mb-1 block">{item.icon}</span>
-                  <p className="font-display font-black text-amber-600 text-base">{item.weight}</p>
-                  <p className="text-xs text-ink/60 font-medium mt-0.5">{item.label}</p>
+              {HEAT_FACTORS.map(({ label, weight, icon: Icon }) => (
+                <div key={label} className="bg-white rounded-xl px-4 py-3 text-center border border-amber-100">
+                  <div className="flex justify-center mb-1.5">
+                    <Icon className="w-5 h-5 text-amber-500" />
+                  </div>
+                  <p className="font-display font-black text-amber-600 text-base">{weight}</p>
+                  <p className="text-xs text-ink/60 font-medium mt-0.5">{label}</p>
                 </div>
               ))}
             </div>
@@ -65,8 +70,8 @@ export default async function TrendingPage() {
         {projects.length === 0 ? (
           <FadeIn>
             <div className="text-center py-24">
-              <div className="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
-                🔥
+              <div className="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Flame className="w-9 h-9 text-brand-300" />
               </div>
               <h3 className="font-display text-xl font-bold text-ink mb-2">
                 現在トレンドのプロジェクトはありません

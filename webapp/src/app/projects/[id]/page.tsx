@@ -4,6 +4,7 @@ import { getProjectById, calcDaysLeft, formatAmount } from "@/lib/projects";
 import HeatBadge from "@/components/HeatBadge";
 import CheerButton from "@/components/CheerButton";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { Music, Palette, Film, Mic, Zap, HelpCircle } from "lucide-react";
 
 export const revalidate = 3600;
 
@@ -21,6 +22,24 @@ const GENRE_PATTERNS: Record<string, string> = {
   other:   "from-stone-100 to-stone-200",
 };
 
+const GENRE_ICON_COLOR: Record<string, string> = {
+  music:   "text-violet-400",
+  art:     "text-rose-400",
+  film:    "text-sky-400",
+  theater: "text-amber-400",
+  dance:   "text-emerald-400",
+  other:   "text-stone-400",
+};
+
+const GENRE_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  music:   Music,
+  art:     Palette,
+  film:    Film,
+  theater: Mic,
+  dance:   Zap,
+  other:   HelpCircle,
+};
+
 interface Props {
   params: { id: string };
 }
@@ -33,6 +52,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   const achievement = Math.round(project.achievement_rate);
   const genre = project.genre ?? "other";
   const isUrgent = daysLeft !== null && daysLeft <= 3 && daysLeft > 0;
+  const GenreIcon = GENRE_ICONS[genre] ?? HelpCircle;
 
   return (
     <div className="min-h-screen bg-canvas">
@@ -65,14 +85,14 @@ export default async function ProjectDetailPage({ params }: Props) {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-7xl opacity-20 select-none">
-                    {genre === "music" ? "♪" : genre === "art" ? "◼" : genre === "film" ? "▶" : genre === "theater" ? "★" : "✦"}
+                  <div className="w-full h-full flex items-center justify-center">
+                    <GenreIcon className={`w-24 h-24 opacity-15 ${GENRE_ICON_COLOR[genre]}`} />
                   </div>
                 )}
 
                 {isUrgent && (
                   <div className="absolute top-4 right-4 bg-brand-500 text-white text-xs font-bold px-3 py-1.5 rounded-full animate-pulse">
-                    残り{daysLeft}日！
+                    残り{daysLeft}日
                   </div>
                 )}
               </div>
@@ -85,7 +105,8 @@ export default async function ProjectDetailPage({ params }: Props) {
                   </span>
                 )}
                 {project.genre && (
-                  <span className="bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-brand-200">
+                  <span className="bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-brand-200 flex items-center gap-1">
+                    <GenreIcon className="w-3 h-3" />
                     {GENRE_LABELS[project.genre]}
                   </span>
                 )}
@@ -187,7 +208,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                     rel="noopener noreferrer"
                     className="btn-primary w-full text-base !py-3.5"
                   >
-                    {project.platforms?.name ?? "元サイト"}で支援する ↗
+                    {project.platforms?.name ?? "元サイト"}で支援する
                   </a>
                   <p className="text-[10px] text-ink/40 text-center mt-3">
                     外部サービスに遷移します

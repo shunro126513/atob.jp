@@ -1,5 +1,6 @@
 "use client";
 import { motion, useReducedMotion } from "framer-motion";
+import { Flame, BarChart2, Sparkles } from "lucide-react";
 
 const MOCK_ITEMS = [
   { rank: 1, title: "音楽×映像 新作アルバム制作", platform: "CAMPFIRE", genre: "音楽", score: 94, pct: 186 },
@@ -24,7 +25,7 @@ export default function HeroPreview() {
         {/* Header row */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <span className="text-base">🔥</span>
+            <Flame className="w-4 h-4 text-brand-500" />
             <span className="font-display font-bold text-sm text-ink">今熱いプロジェクト</span>
           </div>
           <span className="text-[10px] font-semibold text-ink/40 bg-stone-50 px-2 py-0.5 rounded-full">LIVE</span>
@@ -64,7 +65,8 @@ export default function HeroPreview() {
               {/* Heat score */}
               <div className="flex-shrink-0">
                 <span className="inline-flex items-center gap-0.5 bg-brand-50 text-brand-600 ring-1 ring-brand-200 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                  🔥 {item.score}
+                  <Flame className="w-2.5 h-2.5" />
+                  {item.score}
                 </span>
               </div>
             </motion.div>
@@ -94,17 +96,19 @@ export default function HeroPreview() {
       <motion.div
         animate={shouldReduce ? {} : { y: [0, -6, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-4 -right-4 bg-brand-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-glow-sm"
+        className="absolute -top-4 -right-4 bg-brand-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-glow-sm flex items-center gap-1"
       >
-        ✦ 無料で使える
+        <Sparkles className="w-3 h-3" />
+        無料で使える
       </motion.div>
 
       <motion.div
         animate={shouldReduce ? {} : { y: [0, 5, 0] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="absolute -bottom-2 -left-6 bg-white border border-brand-100 text-ink/60 text-[10px] font-semibold px-3 py-1.5 rounded-full shadow-card"
+        className="absolute -bottom-2 -left-6 bg-white border border-brand-100 text-ink/60 text-[10px] font-semibold px-3 py-1.5 rounded-full shadow-card flex items-center gap-1"
       >
-        📊 日次更新
+        <BarChart2 className="w-3 h-3" />
+        日次更新
       </motion.div>
     </motion.div>
   );

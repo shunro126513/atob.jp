@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import Logo from "./Logo";
 
 const NAV = [
@@ -40,19 +41,18 @@ export default function Header() {
             <Link
               key={href}
               href={href}
-              className="px-4 py-2 rounded-xl text-sm font-semibold text-ink/70
-                         hover:text-brand-600 hover:bg-brand-50 transition-all"
+              className="relative px-4 py-2 rounded-xl text-sm font-semibold text-ink/70 hover:text-brand-600 hover:bg-brand-50 transition-all group"
             >
               {label}
+              <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-brand-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
             </Link>
           ))}
           <Link
             href="/projects"
-            className="ml-3 inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-600
-                       text-white text-sm font-semibold px-4 py-2 rounded-xl
-                       shadow-glow-sm hover:shadow-glow transition-all active:scale-95"
+            className="ml-3 inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-glow-sm hover:shadow-glow transition-all active:scale-95"
           >
-            プロジェクトを見る →
+            プロジェクトを探す
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </nav>
 
@@ -60,17 +60,13 @@ export default function Header() {
         <button
           className="md:hidden p-2 rounded-lg text-ink/60 hover:bg-brand-50 transition-colors"
           onClick={() => setOpen(!open)}
-          aria-label="メニューを開く"
+          aria-label={open ? "メニューを閉じる" : "メニューを開く"}
           aria-expanded={open}
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2.2}
-              d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-            />
-          </svg>
+          {open
+            ? <X className="w-5 h-5" />
+            : <Menu className="w-5 h-5" />
+          }
         </button>
       </div>
 
@@ -96,7 +92,8 @@ export default function Header() {
             onClick={() => setOpen(false)}
             className="mt-1 btn-primary text-sm !py-2.5 text-center"
           >
-            プロジェクトを見る →
+            プロジェクトを探す
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>

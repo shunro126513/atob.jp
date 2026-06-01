@@ -3,6 +3,7 @@ import { MOCK_PLATFORMS } from "@/lib/mock-data";
 import ProjectCard from "@/components/ProjectCard";
 import type { Genre, SearchFilters } from "@/types";
 import { FadeIn, FadeInStagger, FadeInItem } from "@/components/motion/FadeIn";
+import { Music, Palette, Film, Mic, Zap, Layers, Search, X } from "lucide-react";
 
 export const revalidate = 1800;
 
@@ -23,12 +24,12 @@ async function getPlatforms() {
 }
 
 const GENRE_OPTIONS = [
-  { value: "",        label: "すべて",   emoji: "🌟" },
-  { value: "music",   label: "音楽",     emoji: "🎵" },
-  { value: "art",     label: "アート",   emoji: "🎨" },
-  { value: "film",    label: "映像",     emoji: "🎬" },
-  { value: "theater", label: "演劇",     emoji: "🎭" },
-  { value: "dance",   label: "ダンス",   emoji: "💃" },
+  { value: "",        label: "すべて",   icon: Layers },
+  { value: "music",   label: "音楽",     icon: Music },
+  { value: "art",     label: "アート",   icon: Palette },
+  { value: "film",    label: "映像",     icon: Film },
+  { value: "theater", label: "演劇",     icon: Mic },
+  { value: "dance",   label: "ダンス",   icon: Zap },
 ];
 
 const SORT_OPTIONS = [
@@ -84,7 +85,7 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
                 className="text-sm border border-stone-200 rounded-xl px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-brand-300 text-ink font-medium"
               >
                 {GENRE_OPTIONS.map((o) => (
-                  <option key={o.value} value={o.value}>{o.emoji} {o.label}</option>
+                  <option key={o.value} value={o.value}>{o.label}</option>
                 ))}
               </select>
             </div>
@@ -131,7 +132,8 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
                 href="/projects"
                 className="flex items-center gap-1 text-xs text-ink/50 hover:text-brand-500 transition-colors mt-auto mb-0.5"
               >
-                ✕ フィルターをクリア
+                <X className="w-3.5 h-3.5" />
+                フィルターをクリア
               </a>
             )}
           </form>
@@ -142,7 +144,7 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
       <div className="max-w-6xl mx-auto px-5 py-8">
         {/* Genre pill filters */}
         <div className="flex gap-2 flex-wrap mb-6">
-          {GENRE_OPTIONS.map(({ value, label, emoji }) => (
+          {GENRE_OPTIONS.map(({ value, label, icon: Icon }) => (
             <a
               key={value}
               href={value ? `/projects?genre=${value}` : "/projects"}
@@ -152,7 +154,8 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
                   : "bg-white text-ink/60 border-stone-200 hover:border-brand-300 hover:text-brand-600"
               }`}
             >
-              {emoji} {label}
+              <Icon className="w-3.5 h-3.5" />
+              {label}
             </a>
           ))}
         </div>
@@ -175,8 +178,8 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
         {projects.length === 0 ? (
           <FadeIn>
             <div className="text-center py-24">
-              <div className="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
-                🔍
+              <div className="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search className="w-9 h-9 text-brand-300" />
               </div>
               <h3 className="font-display text-xl font-bold text-ink mb-2">
                 該当するプロジェクトが見つかりません

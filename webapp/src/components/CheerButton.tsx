@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { Flame, Heart } from "lucide-react";
 
 interface Props {
   projectId: number;
@@ -10,10 +11,10 @@ interface Props {
 const STORAGE_KEY = (id: number) => `atob_cheered_${id}_${new Date().toISOString().slice(0, 10)}`;
 
 export default function CheerButton({ projectId, initialCount, size = "md" }: Props) {
-  const [count, setCount]       = useState(initialCount);
-  const [cheered, setCheered]   = useState(false);
+  const [count, setCount]         = useState(initialCount);
+  const [cheered, setCheered]     = useState(false);
   const [animating, setAnimating] = useState(false);
-  const [loading, setLoading]   = useState(false);
+  const [loading, setLoading]     = useState(false);
 
   useEffect(() => {
     setCheered(!!localStorage.getItem(STORAGE_KEY(projectId)));
@@ -59,7 +60,10 @@ export default function CheerButton({ projectId, initialCount, size = "md" }: Pr
       title={cheered ? "今日はすでに応援済みです" : "応援する（1日1回）"}
     >
       <span className={animating ? "animate-cheer-pop inline-block" : "inline-block"}>
-        {cheered ? "🔥" : "🤍"}
+        {cheered
+          ? <Flame className="w-3 h-3" />
+          : <Heart className="w-3 h-3" />
+        }
       </span>
       <span className="tabular-nums">{count.toLocaleString()}</span>
       {!isSmall && (

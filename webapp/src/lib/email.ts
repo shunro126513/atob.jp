@@ -55,7 +55,7 @@ export async function sendCreatorNotification(project: Project): Promise<boolean
       <p class="tagline">文化芸術支援プロジェクト比較プラットフォーム</p>
     </div>
     <div class="body">
-      <h1 class="title">あなたのプロジェクトが<br>A to B で紹介されています 🎉</h1>
+      <h1 class="title">あなたのプロジェクトが<br>A to B で紹介されています</h1>
       <p class="text">
         こんにちは。<br><br>
         あなたのプロジェクト「<strong>${project.title}</strong>」が、
@@ -80,7 +80,7 @@ export async function sendCreatorNotification(project: Project): Promise<boolean
       </div>
       <a class="cta" href="${projectUrl}">A to B でプロジェクトを確認する →</a>
       <div class="share">
-        <p class="share-title">📢 SNSでシェアするとさらに広がります</p>
+        <p class="share-title">SNSでシェアするとさらに広がります</p>
         <p class="share-text">
           A to B のプロジェクトページのURLをあなたのSNSでシェアしていただくと、
           より多くの支援者に届きます。ぜひご活用ください。<br>
@@ -104,7 +104,7 @@ export async function sendCreatorNotification(project: Project): Promise<boolean
     const { error } = await resend.emails.send({
       from:    FROM,
       to:      project.creator_email,
-      subject: `「${project.title}」が A to B で紹介されています 🎉`,
+      subject: `「${project.title}」が A to B で紹介されています`,
       html,
     });
     return !error;
