@@ -5,17 +5,17 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import Logo from "./Logo";
 
 const NAV = [
-  { href: "/projects",  label: "プロジェクト" },
-  { href: "/trending",  label: "トレンド" },
-  { href: "/compare",   label: "PF比較" },
+  { href: "/projects", label: "プロジェクト" },
+  { href: "/trending", label: "トレンド" },
+  { href: "/compare",  label: "PF比較" },
 ];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen]       = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 12);
+    const handler = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handler, { passive: true });
     handler();
     return () => window.removeEventListener("scroll", handler);
@@ -25,14 +25,21 @@ export default function Header() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-xl shadow-[0_1px_0_0_rgba(232,80,58,0.08),0_4px_24px_0_rgba(0,0,0,0.06)]"
-          : "bg-transparent backdrop-blur-sm"
+          ? "border-b border-white/[0.07]"
+          : "border-b border-transparent"
       }`}
+      style={{
+        background: scrolled
+          ? "rgba(13,13,24,0.92)"
+          : "transparent",
+        backdropFilter: scrolled ? "blur(20px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+      }}
     >
       <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="hover:opacity-80 transition-opacity flex-shrink-0">
-          <Logo size="sm" variant={scrolled ? "dark" : "light"} />
+          <Logo size="sm" variant="light" />
         </Link>
 
         {/* Desktop nav */}
@@ -41,11 +48,7 @@ export default function Header() {
             <Link
               key={href}
               href={href}
-              className={`relative px-4 py-2 rounded-xl text-sm font-semibold transition-all group
-                ${scrolled
-                  ? "text-ink/70 hover:text-brand-600 hover:bg-brand-50"
-                  : "text-white/80 hover:text-white hover:bg-white/10"
-                }`}
+              className="relative px-4 py-2 rounded-xl text-sm font-semibold transition-all group text-white/65 hover:text-white hover:bg-white/[0.06]"
             >
               {label}
               <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-brand-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
@@ -62,16 +65,12 @@ export default function Header() {
 
         {/* Mobile hamburger */}
         <button
-          className={`md:hidden p-2 rounded-lg transition-colors
-            ${scrolled ? "text-ink/60 hover:bg-brand-50" : "text-white/80 hover:bg-white/10"}`}
+          className="md:hidden p-2 rounded-lg text-white/60 hover:text-white hover:bg-white/[0.08] transition-colors"
           onClick={() => setOpen(!open)}
           aria-label={open ? "メニューを閉じる" : "メニューを開く"}
           aria-expanded={open}
         >
-          {open
-            ? <X className="w-5 h-5" />
-            : <Menu className="w-5 h-5" />
-          }
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
@@ -79,7 +78,8 @@ export default function Header() {
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
           open ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
-        } bg-white border-t border-brand-100/60`}
+        } border-t border-white/[0.07]`}
+        style={{ background: "rgba(13,13,24,0.97)", backdropFilter: "blur(20px)" }}
       >
         <div className="px-5 py-3 flex flex-col gap-1">
           {NAV.map(({ href, label }) => (
@@ -87,7 +87,7 @@ export default function Header() {
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className="px-4 py-2.5 rounded-xl text-sm font-semibold text-ink/70 hover:bg-brand-50 hover:text-brand-600 transition-colors"
+              className="px-4 py-2.5 rounded-xl text-sm font-semibold text-white/65 hover:bg-white/[0.07] hover:text-white transition-colors"
             >
               {label}
             </Link>

@@ -7,13 +7,22 @@
   100% { background-position: -200% 0; }
 }
 
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.04); }
+}
+
 @layer base {
   body {
-    @apply bg-canvas text-ink;
+    @apply bg-[#0A0A10] text-white;
     font-feature-settings: "kern" 1, "liga" 1, "palt" 1;
   }
   h1, h2, h3 {
     @apply font-display tracking-tight;
+  }
+  ::selection {
+    background: rgba(232, 80, 58, 0.3);
+    color: #fff;
   }
 }
 
@@ -22,9 +31,9 @@
   .heat-badge {
     @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold tabular-nums;
   }
-  .heat-high { @apply heat-badge bg-brand-50  text-brand-600 ring-1 ring-brand-200; }
-  .heat-mid  { @apply heat-badge bg-orange-50 text-orange-600 ring-1 ring-orange-200; }
-  .heat-low  { @apply heat-badge bg-blue-50   text-blue-600  ring-1 ring-blue-200; }
+  .heat-high { @apply heat-badge bg-brand-500/15 text-brand-400 ring-1 ring-brand-500/30; }
+  .heat-mid  { @apply heat-badge bg-orange-500/15 text-orange-400 ring-1 ring-orange-500/30; }
+  .heat-low  { @apply heat-badge bg-blue-500/15 text-blue-400 ring-1 ring-blue-500/30; }
 
   /* ── Buttons ── */
   .btn-primary {
@@ -36,21 +45,22 @@
   }
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2
-           border-2 border-ink/20 hover:border-brand-400
-           text-ink hover:text-brand-600
-           bg-transparent hover:bg-brand-50
+           border border-white/15 hover:border-brand-400/60
+           text-white/60 hover:text-white
+           bg-transparent hover:bg-white/[0.04]
            font-semibold px-6 py-3 rounded-xl
            transition-all duration-200 active:scale-95;
   }
   .btn-ghost {
     @apply inline-flex items-center gap-1 text-sm font-semibold
-           text-ink/60 hover:text-brand-600 transition-colors;
+           text-white/50 hover:text-brand-400 transition-colors;
   }
 
   /* ── Cards ── */
   .card {
-    @apply bg-canvas-card rounded-2xl shadow-card
-           hover:shadow-card-hover transition-all duration-300 overflow-hidden;
+    background: rgba(255,255,255,0.025);
+    @apply rounded-2xl border border-white/[0.07]
+           hover:border-white/[0.14] transition-all duration-300 overflow-hidden;
   }
 
   /* ── Genre badge ── */
@@ -60,12 +70,12 @@
 
   /* ── Section ── */
   .section-header   { @apply flex items-center justify-between mb-7; }
-  .section-title    { @apply text-2xl font-display font-bold text-ink flex items-center gap-2; }
+  .section-title    { @apply text-2xl font-display font-bold text-white flex items-center gap-2; }
   .section-link     { @apply btn-ghost; }
 
   /* ── Divider ── */
   .arc-divider {
-    background: linear-gradient(90deg, transparent, #e8503a40, transparent);
+    background: linear-gradient(90deg, transparent, rgba(232,80,58,0.3), transparent);
     height: 1px;
   }
 
@@ -75,12 +85,6 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.10);
-  }
-  .glass-warm {
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(232, 80, 58, 0.10);
   }
 
   /* ── Text gradient ── */
@@ -92,9 +96,9 @@
   }
 
   /* ── Section themes ── */
-  .section-dark  { @apply bg-[#0A0A10] text-white; }
+  .section-dark  { background: #0A0A10; @apply text-white; }
   .section-light { @apply bg-white text-ink; }
-  .section-warm  { @apply bg-canvas-warm text-ink; }
+  .section-warm  { background: #0D0D18; @apply text-white; }
 
   /* ── 3D card hover ── */
   .card-3d {
@@ -103,6 +107,17 @@
   }
   .card-3d:hover {
     transform: perspective(1000px) rotateX(-2deg) rotateY(3deg) scale(1.02);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(232,80,58,0.12);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(232,80,58,0.12);
+  }
+
+  /* ── Focus ring ── */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A10];
+  }
+}
+
+@layer utilities {
+  .animate-breathe {
+    animation: breathe 3s ease-in-out infinite;
   }
 }

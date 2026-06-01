@@ -50,11 +50,11 @@ export default function CheerButton({ projectId, initialCount, size = "md" }: Pr
       onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleCheer(); }}
       disabled={cheered || loading}
       className={[
-        "flex items-center gap-1.5 font-semibold rounded-xl transition-all duration-200",
+        "flex items-center gap-1.5 font-semibold rounded-xl transition-all duration-200 border",
         isSmall ? "px-2.5 py-1 text-xs" : "px-3.5 py-2 text-sm",
         cheered
-          ? "bg-orange-50 text-orange-500 ring-1 ring-orange-200 cursor-default"
-          : "bg-gray-50 text-gray-500 ring-1 ring-gray-200 hover:bg-orange-50 hover:text-orange-500 hover:ring-orange-200 active:scale-95",
+          ? "bg-brand-500/15 text-brand-400 border-brand-500/25 cursor-default"
+          : "bg-white/[0.05] text-white/45 border-white/[0.1] hover:bg-brand-500/15 hover:text-brand-400 hover:border-brand-500/25 active:scale-95",
         loading ? "opacity-60 cursor-wait" : "",
       ].join(" ")}
       title={cheered ? "今日はすでに応援済みです" : "応援する（1日1回）"}

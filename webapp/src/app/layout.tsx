@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
-      <body className={`${playfair.variable} ${dmSans.variable} ${notoSansJP.variable} font-sans antialiased bg-canvas`}>
+      <body className={`${playfair.variable} ${dmSans.variable} ${notoSansJP.variable} font-sans antialiased`} style={{ background: "#0A0A10" }}>
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

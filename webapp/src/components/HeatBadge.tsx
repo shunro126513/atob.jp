@@ -1,24 +1,20 @@
-import { Flame, TrendingUp, Minus } from "lucide-react";
+import { HeatRing } from "@/components/visuals/HeatRing";
 
-interface Props { score: number }
+interface Props {
+  score: number;
+  size?: "sm" | "md";
+}
 
-export default function HeatBadge({ score }: Props) {
-  if (score >= 80) return (
-    <span className="heat-high flex items-center gap-1">
-      <Flame className="w-2.5 h-2.5" />
-      {score.toFixed(0)}
-    </span>
-  );
-  if (score >= 50) return (
-    <span className="heat-mid flex items-center gap-1">
-      <TrendingUp className="w-2.5 h-2.5" />
-      {score.toFixed(0)}
-    </span>
-  );
+export default function HeatBadge({ score, size = "sm" }: Props) {
+  const ringSize = size === "md" ? 44 : 36;
+
   return (
-    <span className="heat-low flex items-center gap-1">
-      <Minus className="w-2.5 h-2.5" />
-      {score.toFixed(0)}
-    </span>
+    <HeatRing
+      score={score}
+      size={ringSize}
+      strokeWidth={size === "md" ? 4 : 3.5}
+      showLabel
+      animate
+    />
   );
 }

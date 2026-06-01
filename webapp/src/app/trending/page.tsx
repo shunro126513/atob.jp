@@ -1,40 +1,41 @@
 import { getTrendingProjects } from "@/lib/projects";
 import ProjectCard from "@/components/ProjectCard";
 import { FadeIn, FadeInStagger, FadeInItem } from "@/components/motion/FadeIn";
-import { Flame, TrendingUp, DollarSign, Megaphone, Target, Thermometer } from "lucide-react";
+import { TrendingUp, DollarSign, Megaphone, Target } from "lucide-react";
 
 export const revalidate = 1800;
 
 const HEAT_FACTORS = [
-  { label: "支援額の伸び", weight: "30%", icon: TrendingUp },
-  { label: "累計支援額",   weight: "30%", icon: DollarSign },
-  { label: "SNS注目度",   weight: "20%", icon: Megaphone },
-  { label: "達成率の伸び", weight: "20%", icon: Target },
+  { label: "支援額の伸び", weight: "30%", icon: TrendingUp,  color: "#e8503a" },
+  { label: "累計支援額",   weight: "30%", icon: DollarSign,  color: "#f97316" },
+  { label: "SNS注目度",   weight: "20%", icon: Megaphone,   color: "#fb923c" },
+  { label: "達成率の伸び", weight: "20%", icon: Target,      color: "#fdba74" },
 ];
 
 export default async function TrendingPage() {
   const projects = await getTrendingProjects();
   const top3 = projects.slice(0, 3);
-  const rest = projects.slice(3);
+  const rest  = projects.slice(3);
 
   return (
-    <div className="min-h-screen bg-canvas">
-      {/* Page header */}
-      <div className="bg-canvas-warm border-b border-brand-100/60 py-10">
-        <div className="max-w-6xl mx-auto px-5">
+    <div className="min-h-screen" style={{ background: "#0A0A10" }}>
+      {/* Header */}
+      <div className="relative border-b border-white/[0.07]" style={{ background: "#0F0A0A" }}>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 50% 60% at 0% 50%, rgba(232,80,58,0.08) 0%, transparent 60%)" }}
+        />
+        <div className="max-w-6xl mx-auto px-5 py-10 relative">
           <FadeIn>
-            <nav className="flex items-center gap-2 text-xs text-ink/40 font-medium mb-4">
-              <a href="/" className="hover:text-brand-500 transition-colors">ホーム</a>
+            <nav className="flex items-center gap-2 text-xs text-white/30 font-medium mb-5">
+              <a href="/" className="hover:text-brand-400 transition-colors">ホーム</a>
               <span>/</span>
-              <span className="text-ink/60">トレンド</span>
+              <span className="text-white/50">トレンド</span>
             </nav>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center">
-                <Flame className="w-6 h-6 text-brand-500" />
-              </div>
-              <h1 className="font-display text-3xl md:text-4xl font-bold text-ink">今熱いプロジェクト</h1>
-            </div>
-            <p className="text-ink/50 text-sm max-w-lg">
+            <h1 className="font-display text-2xl md:text-3xl font-black text-white mb-3">
+              今熱いプロジェクト
+            </h1>
+            <p className="text-white/40 text-sm max-w-lg">
               ヒートスコア70以上のプロジェクト。支援の勢い・達成率の伸び・SNS注目度を総合評価。
             </p>
           </FadeIn>
@@ -44,23 +45,23 @@ export default async function TrendingPage() {
       <div className="max-w-6xl mx-auto px-5 py-10">
         {/* Heat score explanation */}
         <FadeIn>
-          <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-100 rounded-2xl p-6 mb-10">
-            <div className="flex items-center gap-2 mb-4">
-              <Thermometer className="w-5 h-5 text-amber-600" />
-              <p className="font-display font-bold text-amber-900">ヒートスコアとは？</p>
-            </div>
-            <p className="text-sm text-amber-800/70 mb-4 leading-relaxed">
-              複数の指標を独自アルゴリズムで統合した、プロジェクトの「熱量」を示すスコアです。
-              0〜100のスケールで、80以上が高熱・50〜79が中熱・49以下が低熱と分類されます。
+          <div
+            className="rounded-2xl border border-white/[0.07] p-6 mb-10"
+            style={{ background: "rgba(232,80,58,0.04)" }}
+          >
+            <p className="font-display font-bold text-white/80 text-sm mb-4">ヒートスコアとは？</p>
+            <p className="text-xs text-white/45 mb-5 leading-relaxed max-w-lg">
+              複数の指標を独自アルゴリズムで統合した「熱量」スコアです。
+              0〜100のスケールで、80以上が高熱・50〜79が中熱・49以下が低熱。
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {HEAT_FACTORS.map(({ label, weight, icon: Icon }) => (
-                <div key={label} className="bg-white rounded-xl px-4 py-3 text-center border border-amber-100">
-                  <div className="flex justify-center mb-1.5">
-                    <Icon className="w-5 h-5 text-amber-500" />
+              {HEAT_FACTORS.map(({ label, weight, icon: Icon, color }) => (
+                <div key={label} className="bg-white/[0.04] border border-white/[0.06] rounded-xl px-4 py-3 text-center">
+                  <div className="flex justify-center mb-2">
+                    <Icon className="w-4 h-4" style={{ color }} />
                   </div>
-                  <p className="font-display font-black text-amber-600 text-base">{weight}</p>
-                  <p className="text-xs text-ink/60 font-medium mt-0.5">{label}</p>
+                  <p className="font-display font-black text-base" style={{ color }}>{weight}</p>
+                  <p className="text-[10px] text-white/45 font-medium mt-0.5">{label}</p>
                 </div>
               ))}
             </div>
@@ -70,36 +71,34 @@ export default async function TrendingPage() {
         {projects.length === 0 ? (
           <FadeIn>
             <div className="text-center py-24">
-              <div className="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Flame className="w-9 h-9 text-brand-300" />
+              <div className="w-20 h-20 rounded-2xl border border-white/[0.07] flex items-center justify-center mx-auto mb-6" style={{ background: "rgba(255,255,255,0.03)" }}>
+                <TrendingUp className="w-9 h-9 text-white/20" />
               </div>
-              <h3 className="font-display text-xl font-bold text-ink mb-2">
+              <h3 className="font-display text-xl font-bold text-white mb-2">
                 現在トレンドのプロジェクトはありません
               </h3>
-              <p className="text-ink/50 text-sm mb-6">しばらくしてから再度ご確認ください</p>
+              <p className="text-white/40 text-sm mb-6">しばらくしてから再度ご確認ください</p>
               <a href="/projects" className="btn-primary text-sm">すべて見る</a>
             </div>
           </FadeIn>
         ) : (
           <>
-            {/* Top 3 */}
             {top3.length > 0 && (
-              <section className="mb-8">
+              <section className="mb-10">
                 <FadeIn>
-                  <h2 className="font-display text-lg font-bold text-ink flex items-center gap-2 mb-5">
-                    <span className="w-7 h-7 bg-brand-500 text-white text-xs font-black rounded-full flex items-center justify-center">TOP</span>
-                    今週のトップ3
-                  </h2>
+                  <p className="text-xs font-bold text-brand-400/70 uppercase tracking-[0.12em] mb-5">Top 3</p>
                 </FadeIn>
                 <FadeInStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" staggerDelay={0.1}>
                   {top3.map((project, i) => (
                     <FadeInItem key={project.id}>
                       <div className="relative">
-                        <div className={`absolute -top-2 -left-2 z-10 w-8 h-8 rounded-full flex items-center justify-center text-sm font-black shadow-md ${
-                          i === 0 ? "bg-yellow-400 text-yellow-900" :
-                          i === 1 ? "bg-stone-400 text-white" :
-                          "bg-amber-700 text-white"
-                        }`}>
+                        <div
+                          className="absolute -top-2.5 -left-2.5 z-10 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black shadow-lg"
+                          style={{
+                            background: i === 0 ? "#eab308" : i === 1 ? "#94a3b8" : "#b45309",
+                            color: i === 0 ? "#713f12" : "#fff",
+                          }}
+                        >
                           {i + 1}
                         </div>
                         <ProjectCard project={project} />
@@ -110,17 +109,15 @@ export default async function TrendingPage() {
               </section>
             )}
 
-            {/* Divider */}
             {rest.length > 0 && (
               <>
                 <FadeIn>
                   <div className="flex items-center gap-4 my-10">
-                    <div className="flex-1 h-px bg-stone-200" />
-                    <span className="text-xs font-semibold text-ink/40 uppercase tracking-wider">その他のトレンド</span>
-                    <div className="flex-1 h-px bg-stone-200" />
+                    <div className="flex-1 h-px bg-white/[0.07]" />
+                    <span className="text-[10px] font-bold text-white/25 uppercase tracking-widest">その他のトレンド</span>
+                    <div className="flex-1 h-px bg-white/[0.07]" />
                   </div>
                 </FadeIn>
-
                 <FadeInStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" staggerDelay={0.05}>
                   {rest.map((project) => (
                     <FadeInItem key={project.id}>
