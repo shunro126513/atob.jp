@@ -1,20 +1,15 @@
 interface Props {
-  size?: "sm" | "md" | "lg";
-  /** trueにすると画像ファイル(public/logo.png)を使用 */
-  useImage?: boolean;
+  size?:    "sm" | "md" | "lg";
+  variant?: "dark" | "light"; // dark = 黒文字（明背景用） / light = 白文字（暗背景用）
 }
 
-export default function Logo({ size = "md", useImage = false }: Props) {
-  const sizes = { sm: 80, md: 120, lg: 200 };
-  const w = sizes[size];
-  const h = w * 0.52;
+export default function Logo({ size = "md", variant = "dark" }: Props) {
+  const sizes   = { sm: 88, md: 132, lg: 220 };
+  const w       = sizes[size];
+  const h       = Math.round(w * 0.52);
+  const textFill = variant === "light" ? "#ffffff" : "#1c1917";
+  const toFill   = variant === "light" ? "rgba(255,255,255,0.75)" : "#1c1917";
 
-  if (useImage) {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src="/logo.png" alt="A to B" width={w} height={h} style={{ objectFit: "contain" }} />;
-  }
-
-  // SVG: ロゴ画像に合わせた再現
   return (
     <svg
       width={w}
@@ -22,6 +17,7 @@ export default function Logo({ size = "md", useImage = false }: Props) {
       viewBox="0 0 240 125"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="A to B"
+      role="img"
     >
       {/* A */}
       <text
@@ -29,7 +25,7 @@ export default function Logo({ size = "md", useImage = false }: Props) {
         fontFamily="Playfair Display, Georgia, serif"
         fontWeight="900"
         fontSize="96"
-        fill="#1c1917"
+        fill={textFill}
         letterSpacing="-2"
       >A</text>
 
@@ -39,7 +35,7 @@ export default function Logo({ size = "md", useImage = false }: Props) {
         fontFamily="Playfair Display, Georgia, serif"
         fontWeight="900"
         fontSize="96"
-        fill="#1c1917"
+        fill={textFill}
         letterSpacing="-2"
       >B</text>
 
@@ -49,11 +45,11 @@ export default function Logo({ size = "md", useImage = false }: Props) {
         fontFamily="DM Sans, system-ui, sans-serif"
         fontWeight="500"
         fontSize="18"
-        fill="#1c1917"
+        fill={toFill}
         textAnchor="middle"
       >to</text>
 
-      {/* アーク（A の底部から B へ） */}
+      {/* アーク */}
       <path
         d="M 52 92 Q 120 18 194 88"
         stroke="#e8503a"
@@ -66,12 +62,9 @@ export default function Logo({ size = "md", useImage = false }: Props) {
       <circle cx="52" cy="92" r="4.5" fill="#e8503a" />
 
       {/* エンド矢印 */}
-      <polygon
-        points="194,82 203,90 193,96"
-        fill="#e8503a"
-      />
+      <polygon points="194,82 203,90 193,96" fill="#e8503a" />
 
-      {/* サウンドウェーブ（アーク頂点付近） */}
+      {/* サウンドウェーブ */}
       <g transform="translate(105, 28)" fill="#e8503a">
         <rect x="0"  y="10" width="3" height="9"  rx="1.5" />
         <rect x="6"  y="5"  width="3" height="16" rx="1.5" />

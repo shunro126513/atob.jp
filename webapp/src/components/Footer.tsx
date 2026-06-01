@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
           <div className="col-span-2 md:col-span-1">
             <div className="mb-3">
-              <Logo size="sm" useImage={false} />
+              <Logo size="sm" variant="light" />
             </div>
             <p className="text-xs text-white/40 leading-relaxed">
               文化芸術支援プロジェクトの<br />比較・集約プラットフォーム

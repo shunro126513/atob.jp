@@ -32,7 +32,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="hover:opacity-80 transition-opacity flex-shrink-0">
-          <Logo size="sm" useImage={false} />
+          <Logo size="sm" variant={scrolled ? "dark" : "light"} />
         </Link>
 
         {/* Desktop nav */}
@@ -41,7 +41,11 @@ export default function Header() {
             <Link
               key={href}
               href={href}
-              className="relative px-4 py-2 rounded-xl text-sm font-semibold text-ink/70 hover:text-brand-600 hover:bg-brand-50 transition-all group"
+              className={`relative px-4 py-2 rounded-xl text-sm font-semibold transition-all group
+                ${scrolled
+                  ? "text-ink/70 hover:text-brand-600 hover:bg-brand-50"
+                  : "text-white/80 hover:text-white hover:bg-white/10"
+                }`}
             >
               {label}
               <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-brand-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
@@ -58,7 +62,8 @@ export default function Header() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden p-2 rounded-lg text-ink/60 hover:bg-brand-50 transition-colors"
+          className={`md:hidden p-2 rounded-lg transition-colors
+            ${scrolled ? "text-ink/60 hover:bg-brand-50" : "text-white/80 hover:bg-white/10"}`}
           onClick={() => setOpen(!open)}
           aria-label={open ? "メニューを閉じる" : "メニューを開く"}
           aria-expanded={open}

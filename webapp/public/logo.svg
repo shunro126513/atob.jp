@@ -1,0 +1,22 @@
+<svg width="240" height="125" viewBox="0 0 240 125" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A to B">
+  <!-- A -->
+  <text x="4" y="110" font-family="Georgia, 'Times New Roman', serif" font-weight="900" font-size="96" fill="#1c1917" letter-spacing="-2">A</text>
+  <!-- B -->
+  <text x="170" y="110" font-family="Georgia, 'Times New Roman', serif" font-weight="900" font-size="96" fill="#1c1917" letter-spacing="-2">B</text>
+  <!-- to -->
+  <text x="120" y="100" font-family="system-ui, sans-serif" font-weight="500" font-size="18" fill="#1c1917" text-anchor="middle">to</text>
+  <!-- アーク -->
+  <path d="M 52 92 Q 120 18 194 88" stroke="#e8503a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <!-- スタートドット -->
+  <circle cx="52" cy="92" r="4.5" fill="#e8503a"/>
+  <!-- エンド矢印 -->
+  <polygon points="194,82 203,90 193,96" fill="#e8503a"/>
+  <!-- サウンドウェーブ -->
+  <g transform="translate(105, 28)" fill="#e8503a">
+    <rect x="0"  y="10" width="3" height="9"  rx="1.5"/>
+    <rect x="6"  y="5"  width="3" height="16" rx="1.5"/>
+    <rect x="12" y="1"  width="3" height="20" rx="1.5"/>
+    <rect x="18" y="5"  width="3" height="16" rx="1.5"/>
+    <rect x="24" y="10" width="3" height="9"  rx="1.5"/>
+  </g>
+</svg>

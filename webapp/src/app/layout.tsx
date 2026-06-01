@@ -33,6 +33,11 @@ export const metadata: Metadata = {
     description: "支援ではなく、参加。文化芸術プロジェクトを比較・発見。",
     locale: "ja_JP",
     type: "website",
+    images: [{ url: "/logo.svg", width: 240, height: 125, alt: "A to B" }],
+  },
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
   },
 };
 
