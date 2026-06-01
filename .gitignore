@@ -19,3 +19,4 @@ out/
 # ログ
 *.log
 /tmp/
+.vercel

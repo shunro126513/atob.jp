@@ -3,15 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --radius: 0.875rem;
-  }
   body {
-    @apply bg-surface-muted text-gray-900;
-    font-feature-settings: "kern" 1, "liga" 1;
+    @apply bg-canvas text-ink;
+    font-feature-settings: "kern" 1, "liga" 1, "palt" 1;
   }
-  h1, h2, h3, h4 {
-    @apply font-extrabold tracking-tight;
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
   }
 }
 
@@ -20,33 +17,35 @@
   .heat-badge {
     @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold tabular-nums;
   }
-  .heat-high { @apply heat-badge bg-red-50   text-red-600   ring-1 ring-red-200; }
+  .heat-high { @apply heat-badge bg-brand-50  text-brand-600 ring-1 ring-brand-200; }
   .heat-mid  { @apply heat-badge bg-orange-50 text-orange-600 ring-1 ring-orange-200; }
-  .heat-low  { @apply heat-badge bg-blue-50  text-blue-600  ring-1 ring-blue-200; }
+  .heat-low  { @apply heat-badge bg-blue-50   text-blue-600  ring-1 ring-blue-200; }
 
   /* ── Buttons ── */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2
-           bg-gradient-to-r from-brand-600 to-brand-500
-           hover:from-brand-700 hover:to-brand-600
-           text-white px-5 py-2.5 rounded-xl font-semibold text-sm
-           shadow-md hover:shadow-glow
+           bg-brand-500 hover:bg-brand-600
+           text-white font-semibold px-6 py-3 rounded-xl
+           shadow-glow-sm hover:shadow-glow
            transition-all duration-200 active:scale-95;
   }
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2
-           border-2 border-brand-200 hover:border-brand-400
-           text-brand-700 hover:text-brand-800
-           bg-white hover:bg-brand-50
-           px-5 py-2.5 rounded-xl font-semibold text-sm
+           border-2 border-ink/20 hover:border-brand-400
+           text-ink hover:text-brand-600
+           bg-transparent hover:bg-brand-50
+           font-semibold px-6 py-3 rounded-xl
            transition-all duration-200 active:scale-95;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-1 text-sm font-semibold
+           text-ink/60 hover:text-brand-600 transition-colors;
   }
 
   /* ── Cards ── */
   .card {
-    @apply bg-white rounded-2xl shadow-card border-0
-           hover:shadow-card-hover transition-all duration-300
-           overflow-hidden;
+    @apply bg-canvas-card rounded-2xl shadow-card
+           hover:shadow-card-hover transition-all duration-300 overflow-hidden;
   }
 
   /* ── Genre badge ── */
@@ -54,15 +53,14 @@
     @apply text-xs font-semibold px-2.5 py-1 rounded-lg;
   }
 
-  /* ── Section header ── */
-  .section-header {
-    @apply flex items-center justify-between mb-6;
-  }
-  .section-title {
-    @apply text-xl font-extrabold text-gray-900 flex items-center gap-2;
-  }
-  .section-link {
-    @apply text-sm font-semibold text-brand-600 hover:text-brand-700
-           flex items-center gap-1 transition-colors;
+  /* ── Section ── */
+  .section-header   { @apply flex items-center justify-between mb-7; }
+  .section-title    { @apply text-2xl font-display font-bold text-ink flex items-center gap-2; }
+  .section-link     { @apply btn-ghost; }
+
+  /* ── Divider ── */
+  .arc-divider {
+    background: linear-gradient(90deg, transparent, #e8503a40, transparent);
+    height: 1px;
   }
 }
