@@ -56,11 +56,13 @@ const config: Config = {
         "fade-in":   "fadeIn 0.3s ease-out",
         "slide-up":  "slideUp 0.4s ease-out",
         "cheer-pop": "cheerPop 0.4s cubic-bezier(0.34,1.56,0.64,1)",
+        "shimmer":   "shimmer 1.6s ease-in-out infinite",
       },
       keyframes: {
         fadeIn:   { from: { opacity: "0" },                          to: { opacity: "1" } },
         slideUp:  { from: { opacity: "0", transform: "translateY(12px)" }, to: { opacity: "1", transform: "none" } },
         cheerPop: { "0%": { transform: "scale(1)" }, "50%": { transform: "scale(1.45)" }, "100%": { transform: "scale(1)" } },
+        shimmer:  { "0%": { backgroundPosition: "200% 0" }, "100%": { backgroundPosition: "-200% 0" } },
       },
     },
   },
