@@ -38,6 +38,9 @@ export interface Project {
   status: ProjectStatus;
   heat_score: number;
   is_featured: boolean;
+  cheer_count: number;
+  creator_email: string | null;
+  notified_at: string | null;
   platforms?: Platform;
   artists?: Artist;
 }
