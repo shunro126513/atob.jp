@@ -11,7 +11,7 @@ const NAV = [
 ];
 
 export default function Header() {
-  const [open, setOpen]       = useState(false);
+  const [open, setOpen]         = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -24,13 +24,11 @@ export default function Header() {
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-white/[0.07]"
-          : "border-b border-transparent"
+        scrolled ? "border-b border-white/[0.06]" : "border-b border-transparent"
       }`}
       style={{
         background: scrolled
-          ? "rgba(13,13,24,0.92)"
+          ? "rgba(9,10,18,0.94)"
           : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
@@ -48,15 +46,15 @@ export default function Header() {
             <Link
               key={href}
               href={href}
-              className="relative px-4 py-2 rounded-xl text-sm font-semibold transition-all group text-white/65 hover:text-white hover:bg-white/[0.06]"
+              className="relative px-4 py-2 rounded-lg text-sm font-semibold transition-all group text-white/60 hover:text-white hover:bg-white/[0.05]"
             >
               {label}
-              <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-brand-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
+              <span className="absolute bottom-1 left-4 right-4 h-px bg-brand-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
             </Link>
           ))}
           <Link
             href="/projects"
-            className="ml-3 inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-glow-sm hover:shadow-glow transition-all active:scale-95"
+            className="ml-3 inline-flex items-center gap-1.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-glow-sm hover:shadow-glow transition-all active:scale-[0.98]"
           >
             プロジェクトを探す
             <ArrowRight className="w-3.5 h-3.5" />
@@ -65,7 +63,7 @@ export default function Header() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden p-2 rounded-lg text-white/60 hover:text-white hover:bg-white/[0.08] transition-colors"
+          className="md:hidden p-2 rounded-lg text-white/55 hover:text-white hover:bg-white/[0.07] transition-colors"
           onClick={() => setOpen(!open)}
           aria-label={open ? "メニューを閉じる" : "メニューを開く"}
           aria-expanded={open}
@@ -78,8 +76,8 @@ export default function Header() {
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
           open ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
-        } border-t border-white/[0.07]`}
-        style={{ background: "rgba(13,13,24,0.97)", backdropFilter: "blur(20px)" }}
+        } border-t border-white/[0.06]`}
+        style={{ background: "rgba(9,10,18,0.97)", backdropFilter: "blur(20px)" }}
       >
         <div className="px-5 py-3 flex flex-col gap-1">
           {NAV.map(({ href, label }) => (
@@ -87,7 +85,7 @@ export default function Header() {
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className="px-4 py-2.5 rounded-xl text-sm font-semibold text-white/65 hover:bg-white/[0.07] hover:text-white transition-colors"
+              className="px-4 py-2.5 rounded-lg text-sm font-semibold text-white/60 hover:bg-white/[0.06] hover:text-white transition-colors"
             >
               {label}
             </Link>

@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function SceneNav({ scenes }: Props) {
-  const [active, setActive] = useState(0);
+  const [active, setActive]   = useState(0);
   const [hovered, setHovered] = useState<number | null>(null);
 
   const updateActive = useCallback(() => {
@@ -27,25 +27,19 @@ export default function SceneNav({ scenes }: Props) {
       const rect = el.getBoundingClientRect();
       const center = rect.top + rect.height / 2;
       const dist = Math.abs(center - middle);
-      if (dist < bestDist) {
-        bestDist = dist;
-        best = i;
-      }
+      if (dist < bestDist) { bestDist = dist; best = i; }
     });
     setActive(best);
   }, [scenes]);
 
   useEffect(() => {
     updateActive();
-    const handler = () => updateActive();
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    window.addEventListener("scroll", updateActive, { passive: true });
+    return () => window.removeEventListener("scroll", updateActive);
   }, [updateActive]);
 
   function scrollTo(id: string) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   return (
@@ -55,7 +49,6 @@ export default function SceneNav({ scenes }: Props) {
     >
       {scenes.map((scene, i) => (
         <div key={scene.id} className="relative flex items-center gap-2">
-          {/* Label on hover */}
           <AnimatePresence>
             {hovered === i && (
               <motion.span
@@ -63,14 +56,13 @@ export default function SceneNav({ scenes }: Props) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 8 }}
                 transition={{ duration: 0.15 }}
-                className="text-[11px] font-semibold text-white/70 whitespace-nowrap bg-midnight-surface/80 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/10"
+                className="text-[11px] font-semibold text-white/65 whitespace-nowrap bg-surface-layer/90 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/[0.08]"
               >
                 {scene.label}
               </motion.span>
             )}
           </AnimatePresence>
 
-          {/* Dot */}
           <button
             onClick={() => scrollTo(scene.id)}
             onMouseEnter={() => setHovered(i)}
@@ -80,17 +72,17 @@ export default function SceneNav({ scenes }: Props) {
           >
             <motion.div
               animate={{
-                width:  active === i ? 10 : 6,
-                height: active === i ? 10 : 6,
-                opacity: active === i ? 1 : 0.4,
+                width:   active === i ? 10 : 5,
+                height:  active === i ? 10 : 5,
+                opacity: active === i ? 1 : 0.35,
               }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
               className="rounded-full"
               style={{
                 background: active === i
-                  ? "rgba(232,80,58,1)"
-                  : "rgba(255,255,255,0.6)",
-                boxShadow: active === i ? "0 0 8px rgba(232,80,58,0.7)" : "none",
+                  ? "rgba(99,102,241,1)"
+                  : "rgba(255,255,255,0.55)",
+                boxShadow: active === i ? "0 0 8px rgba(99,102,241,0.65)" : "none",
               }}
             />
           </button>
