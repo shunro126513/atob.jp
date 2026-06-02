@@ -86,14 +86,14 @@ export default function SceneCompare() {
           initial={{ opacity: 0, y: reduce ? 0 : 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
+          className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6"
         >
           <div>
-            <p className="eyebrow mb-4">Compare</p>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-white leading-tight">
+            <p className="eyebrow mb-3">Compare</p>
+            <h2 className="font-display text-3xl md:text-[2.6rem] font-extrabold text-white leading-[1.1]">
               どこで支援する？
             </h2>
-            <p className="text-white/38 text-sm mt-4 max-w-lg">
+            <p className="text-white/38 text-sm mt-4 max-w-lg leading-[1.8]">
               プラットフォームごとに手数料・対応ジャンル・資金調達の仕組みが異なります。
               A to B なら一画面で比較できます。
             </p>

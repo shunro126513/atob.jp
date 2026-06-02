@@ -76,7 +76,7 @@
 
   /* ── Eyebrow label ── */
   .eyebrow {
-    @apply text-xs font-bold text-brand-400/70 uppercase tracking-[0.14em];
+    @apply text-[0.7rem] font-bold text-brand-400/65 uppercase tracking-[0.16em];
   }
 
   /* ── Divider ── */

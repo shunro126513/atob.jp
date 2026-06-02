@@ -47,13 +47,15 @@ function StepCard({ s, index }: { s: typeof STEPS[0]; index: number }) {
 
       {/* Icon */}
       <div
-        className="relative w-14 h-14 rounded-xl flex items-center justify-center mb-5 border"
+        className="relative w-13 h-13 rounded-xl flex items-center justify-center mb-4 border"
         style={{
-          background: `${s.color}0E`,
-          borderColor: `${s.color}22`,
+          background: `${s.color}0D`,
+          borderColor: `${s.color}20`,
+          width: "52px",
+          height: "52px",
         }}
       >
-        <Icon className="w-6 h-6" style={{ color: s.color }} />
+        <Icon className="w-5 h-5" style={{ color: s.color }} />
         <span
           className="absolute -top-2 -right-2 text-[9px] font-extrabold px-1.5 py-0.5 rounded-full border"
           style={{ color: s.color, background: "#090A12", borderColor: `${s.color}35` }}
@@ -64,17 +66,17 @@ function StepCard({ s, index }: { s: typeof STEPS[0]; index: number }) {
 
       {/* Badge */}
       <span
-        className={`text-[9px] font-extrabold px-2.5 py-1 rounded-full mb-3 uppercase tracking-wider ${
+        className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full mb-3 uppercase tracking-wider ${
           isExternal
-            ? "bg-orange-500/12 text-orange-400 border border-orange-500/25"
-            : "bg-white/[0.05] text-white/38 border border-white/[0.09]"
+            ? "bg-orange-500/10 text-orange-400 border border-orange-500/20"
+            : "bg-white/[0.04] text-white/32 border border-white/[0.08]"
         }`}
       >
         {s.badge}
       </span>
 
-      <p className="font-display font-bold text-white text-base mb-2">{s.title}</p>
-      <p className="text-white/38 text-xs leading-relaxed max-w-[150px]">{s.desc}</p>
+      <p className="font-display font-bold text-white text-sm mb-2">{s.title}</p>
+      <p className="text-white/35 text-xs leading-[1.7] max-w-[145px]">{s.desc}</p>
     </motion.div>
   );
 }
@@ -102,14 +104,14 @@ export default function SceneFlow() {
           initial={{ opacity: 0, y: reduce ? 0 : 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <p className="eyebrow mb-4">Action</p>
-          <h2 className="font-display text-3xl md:text-4xl font-extrabold text-white leading-tight mb-4">
+          <p className="eyebrow mb-3">Action</p>
+          <h2 className="font-display text-3xl md:text-[2.5rem] font-extrabold text-white leading-[1.1] mb-5">
             探す→比較する→応援する→
             <span className="text-gradient">支援する</span>
           </h2>
-          <p className="text-white/38 text-sm max-w-lg mx-auto">
+          <p className="text-white/38 text-sm max-w-lg mx-auto leading-[1.8]">
             A to B は「探す・比較する・応援する」の場所です。実際の支援・購入は元のプラットフォームで行います。
           </p>
         </motion.div>

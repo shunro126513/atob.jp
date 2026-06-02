@@ -38,25 +38,25 @@ function GenreCard({ genre, label, sub, index }: { genre: Genre; label: string; 
           style={{ background: `linear-gradient(90deg, ${colors.primary}70, ${colors.primary}30, transparent)` }}
         />
 
-        <div className="p-5 flex flex-col gap-4">
+        <div className="px-4 pt-4 pb-5 flex flex-col gap-3.5">
           {/* Icon + arrow */}
           <div className="flex justify-between items-start">
             <div
-              className="w-14 h-14 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
+              className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
               style={{ background: colors.bg }}
             >
-              <GenreVisual genre={genre} size={44} animated />
+              <GenreVisual genre={genre} size={38} animated />
             </div>
             <ArrowRight
-              className="w-4 h-4 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              className="w-3.5 h-3.5 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
               style={{ color: colors.primary }}
             />
           </div>
 
           {/* Text */}
           <div>
-            <p className="font-display font-bold text-base text-white leading-tight mb-1">{label}</p>
-            <p className="text-xs text-white/38 font-medium leading-relaxed">{sub}</p>
+            <p className="font-display font-bold text-sm text-white leading-snug mb-1">{label}</p>
+            <p className="text-[11px] text-white/35 font-medium leading-snug">{sub}</p>
           </div>
         </div>
       </Link>
@@ -88,14 +88,14 @@ export default function SceneDiscover() {
           initial={{ opacity: 0, y: reduce ? 0 : 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12"
+          className="mb-14"
         >
-          <p className="eyebrow mb-4">Discover</p>
-          <h2 className="font-display text-3xl md:text-4xl font-extrabold text-white leading-tight max-w-xl">
-            あなたの応援を<br />
-            <span className="text-gradient">待っている表現</span>がある
+          <p className="eyebrow mb-3">Discover</p>
+          <h2 className="font-display text-3xl md:text-[2.6rem] font-extrabold text-white leading-[1.1] max-w-lg">
+            あなたの応援を待っている<br />
+            <span className="text-gradient">表現</span>がある
           </h2>
-          <p className="text-white/40 text-sm mt-4 max-w-md">
+          <p className="text-white/38 text-sm mt-5 max-w-sm leading-[1.8]">
             ジャンルを選んで、今支援できるプロジェクトを探す
           </p>
         </motion.div>
@@ -112,7 +112,7 @@ export default function SceneDiscover() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-10 flex justify-center"
+          className="mt-12 flex justify-center"
         >
           <Link
             href="/projects"

@@ -60,7 +60,7 @@ function HeatProjectCard({ project, rank, delay = 0 }: { project: Project; rank:
             </div>
 
             {/* Title */}
-            <h3 className="font-display font-bold text-white text-sm leading-snug mb-4 line-clamp-2 group-hover:text-brand-300 transition-colors">
+            <h3 className="font-display font-bold text-white text-sm leading-[1.45] mb-4 line-clamp-2 group-hover:text-brand-300 transition-colors">
               {project.title}
             </h3>
 
@@ -130,16 +130,16 @@ export default function SceneHeat({ trending }: Props) {
           initial={{ opacity: 0, y: reduce ? 0 : 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6"
+          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
         >
           <div>
-            <p className="eyebrow mb-4">Heat</p>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold text-white leading-tight">
+            <p className="eyebrow mb-3">Heat</p>
+            <h2 className="font-display text-3xl md:text-[2.75rem] font-extrabold text-white leading-[1.1]">
               今、熱が生まれている
               <br />
               <span className="text-gradient">場所がある</span>
             </h2>
-            <p className="text-white/38 text-sm mt-4 max-w-md">
+            <p className="text-white/38 text-sm mt-5 max-w-md leading-[1.8]">
               ヒートスコアは支援の勢い・達成率・SNS注目度を独自に統合した数値です
             </p>
           </div>
@@ -157,7 +157,7 @@ export default function SceneHeat({ trending }: Props) {
           initial={{ opacity: 0, y: reduce ? 0 : 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.45, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-wrap gap-2.5 mb-10"
+          className="flex flex-wrap gap-2.5 mb-8"
         >
           {HEAT_FACTORS.map(({ label, weight, color }) => (
             <div key={label} className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.07] rounded-lg px-3 py-1.5">

@@ -55,15 +55,15 @@ export default function SceneCTA() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="eyebrow mb-8">Participate</p>
+          <p className="eyebrow mb-5">Participate</p>
 
-          <h2 className="font-display text-4xl md:text-6xl font-extrabold text-white leading-[1.06] mb-8 tracking-tight">
+          <h2 className="font-display text-4xl md:text-[3.75rem] font-extrabold text-white leading-[1.06] mb-6 tracking-tight">
             支援ではなく、
             <br />
             <span className="text-gradient">参加。</span>
           </h2>
 
-          <p className="text-white/42 text-base leading-relaxed mb-12 max-w-lg mx-auto">
+          <p className="text-white/42 text-[0.95rem] leading-[1.85] mb-10 max-w-[480px] mx-auto">
             文化芸術の熱量を可視化し、あなたが応援したい表現との出会いをつくる。
             <br />
             A to B は、文化芸術への参加体験をつくるプラットフォームです。

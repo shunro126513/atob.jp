@@ -98,15 +98,15 @@ export default function ProjectCard({ project }: Props) {
         </div>
 
         {/* Content */}
-        <div className="flex flex-col flex-1 p-4 gap-3">
-          <h3 className="font-display font-bold text-white/88 text-sm leading-snug line-clamp-2 group-hover:text-white transition-colors">
+        <div className="flex flex-col flex-1 px-4 pt-3.5 pb-4 gap-3">
+          <h3 className="font-display font-bold text-white/85 text-sm leading-[1.45] line-clamp-2 group-hover:text-white transition-colors">
             {project.title}
           </h3>
 
           {/* Progress */}
           <div className="space-y-1.5">
             <div className="flex items-end justify-between">
-              <span className="text-xs text-white/32">{formatAmount(project.current_amount)}</span>
+              <span className="text-[11px] text-white/30">{formatAmount(project.current_amount)}</span>
               <span className="font-display font-extrabold text-brand-400 text-sm">{achievement}%</span>
             </div>
             <div className="h-1 bg-white/[0.06] rounded-full overflow-hidden">
@@ -118,9 +118,9 @@ export default function ProjectCard({ project }: Props) {
           </div>
 
           {/* Stats + Cheer */}
-          <div className="flex items-center justify-between mt-auto pt-1">
-            <div className="flex items-center gap-2 text-xs text-white/32">
-              <span className="font-semibold text-white/50">{project.backers_count.toLocaleString()}人</span>
+          <div className="flex items-center justify-between mt-auto pt-0.5">
+            <div className="flex items-center gap-2 text-[11px] text-white/30">
+              <span className="font-semibold text-white/48">{project.backers_count.toLocaleString()}人</span>
               {daysLeft !== null && !urgent && (
                 <><span>·</span><span>{daysLeft > 0 ? `残り${daysLeft}日` : "終了"}</span></>
               )}

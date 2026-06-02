@@ -71,7 +71,7 @@ export default function SceneHero() {
             initial={{ opacity: 0, y: reduce ? 0 : 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 mb-8 px-3 py-1.5 rounded-full border border-brand-500/20 bg-brand-500/[0.07]"
+            className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-brand-500/20 bg-brand-500/[0.07]"
           >
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-60" />
@@ -86,11 +86,9 @@ export default function SceneHero() {
             initial={{ opacity: 0, y: reduce ? 0 : 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-[2.6rem] md:text-[3.4rem] font-extrabold leading-[1.06] mb-6 tracking-tight"
+            className="font-display text-[2.5rem] md:text-[3.2rem] font-extrabold leading-[1.08] mb-7 tracking-tight"
           >
-            <span className="text-white">いま熱が生まれている</span>
-            <br />
-            <span className="text-white">文化芸術に、</span>
+            <span className="text-white">いま熱が生まれている文化芸術に、</span>
             <br />
             <span className="text-gradient">参加できる</span>
             <span className="text-white">。</span>
@@ -100,10 +98,10 @@ export default function SceneHero() {
             initial={{ opacity: 0, y: reduce ? 0 : 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="text-white/50 text-base md:text-lg leading-relaxed mb-9 max-w-md"
+            className="text-white/48 text-sm md:text-base leading-[1.8] mb-8 max-w-[420px]"
           >
-            CAMPFIRE・Bandcamp・READYFOR など複数プラットフォームのプロジェクトを横断比較。
-            独自のヒートスコアで、今一番熱いプロジェクトがわかる。
+            CAMPFIRE・Bandcamp・READYFOR など複数プラットフォームの
+            プロジェクトを横断比較。独自のヒートスコアで、今一番熱いプロジェクトがわかる。
           </motion.p>
 
           <motion.div
@@ -132,16 +130,16 @@ export default function SceneHero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.8 }}
-            className="flex flex-wrap gap-7 mt-12 pt-8 border-t border-white/[0.06]"
+            className="flex flex-wrap gap-8 mt-10 pt-6 border-t border-white/[0.06]"
           >
             {[
               { val: "40+", label: "プロジェクト" },
               { val: "5",   label: "連携PF" },
               { val: "無料", label: "で使える" },
             ].map(({ val, label }) => (
-              <div key={label} className="flex items-baseline gap-1.5">
-                <span className="font-display text-xl font-extrabold text-brand-400">{val}</span>
-                <span className="text-xs text-white/35 font-medium">{label}</span>
+              <div key={label} className="flex items-baseline gap-1">
+                <span className="font-display text-lg font-extrabold text-brand-400">{val}</span>
+                <span className="text-[11px] text-white/32 font-medium">{label}</span>
               </div>
             ))}
           </motion.div>
