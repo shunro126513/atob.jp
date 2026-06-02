@@ -88,9 +88,9 @@ export default function SceneHero() {
             transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="font-display text-[2.5rem] md:text-[3.2rem] font-extrabold leading-[1.08] mb-7 tracking-tight"
           >
-            <span className="text-white">いま熱が生まれている文化芸術に、</span>
+            <span className="text-white">熱のある文化芸術と、</span>
             <br />
-            <span className="text-gradient">参加できる</span>
+            <span className="text-gradient">共振できる</span>
             <span className="text-white">。</span>
           </motion.h1>
 
@@ -100,8 +100,9 @@ export default function SceneHero() {
             transition={{ duration: 0.55, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="text-white/48 text-sm md:text-base leading-[1.8] mb-8 max-w-[420px]"
           >
-            CAMPFIRE・Bandcamp・READYFOR など複数プラットフォームの
-            プロジェクトを横断比較。独自のヒートスコアで、今一番熱いプロジェクトがわかる。
+            CAMPFIRE・Bandcamp・READYFOR など<br />
+            複数プラットフォームのプロジェクトを横断比較。<br />
+            トレンドで、今一番熱いプロジェクトがわかる。
           </motion.p>
 
           <motion.div
